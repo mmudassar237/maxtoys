@@ -1,0 +1,69 @@
+{
+  "name": "maxtoys",
+  "version": "1.5.0",
+  "homepage": "http://97.74.83.195/",
+  "main": "dist/index.js",
+  "private": false,
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/material": "^5.4.0",
+    "@mui/utils": "^5.3.0",
+    "@react-query-firebase/firestore": "^0.4.2",
+    "axios": "^0.25.0",
+    "bootstrap": "4.6.0",
+    "chart.js": "3.2.1",
+    "firebase": "^9.6.6",
+    "formik": "^2.2.9",
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.9",
+    "json-server": "^0.17.0",
+    "material-table": "^1.69.3",
+    "node-sass": "6.0.0",
+    "perfect-scrollbar": "1.5.1",
+    "prop-types": "^15.8.1",
+    "react": "17.0.2",
+    "react-chartjs-2": "3.0.3",
+    "react-dom": "17.0.2",
+    "react-image-lightbox": "^5.1.4",
+    "react-notification-alert": "0.0.13",
+    "react-notifications": "^1.7.3",
+    "react-query": "^3.34.14",
+    "react-router": "5.2.0",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "4.0.3",
+    "reactstrap": "8.9.0",
+    "sweetalert2": "^11.4.0",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "compile-sass": "node-sass src/assets/scss/now-ui-dashboard.scss src/assets/css/now-ui-dashboard.css",
+    "minify-sass": "node-sass src/assets/scss/now-ui-dashboard.scss src/assets/css/now-ui-dashboard.min.css --output-style compressed",
+    "map-sass": "node-sass src/assets/scss/now-ui-dashboard.scss src/assets/css/now-ui-dashboard.css --source-map true"
+  },
+  "optionalDependencies": {
+    "@babel/core": "7.14.3",
+    "jquery": "3.6.0",
+    "typescript": "4.2.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

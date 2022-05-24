@@ -1,0 +1,13 @@
+.loginBTNhover{
+    color: #7B7D7D;
+    font-size: 14px;
+    float: right;
+    cursor: pointer;
+}
+
+.loginBTNhover:hover{
+    color: #1867FA;
+    text-decoration: underline;
+}
+
+/* style={{ float:"right", fontSize:'14px', cursor:"pointer", color:'#7B7D7D' }}  */

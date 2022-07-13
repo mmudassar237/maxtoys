@@ -108,7 +108,7 @@ function Dashboard() {
   var tableToExcel = (data) => {
     let Rows = "";
     data.forEach((e, i) => {
-      Rows += `<tr height=35><td align=center width=85 height=34><img src={url${i}} height=34 width=85 /></td><td>{time${i}}</td><td width=85>{length${i}}</td><td width=85>{width${i}}</td><td width=85>{height${i}}</td><td width=85>{barcode${i}}</td><td width=115>{shape${i}}</td><td width=115>{device${i}}</td><td width=85>{name${i}}</td><td width=85>{customer${i}}</td><td width=85>{supplier${i}}</td></tr>`;
+      Rows += `<tr height=47><td align=center width=100 height=47><img src={url${i}} height=45 width=100 /></td><td align=center width=100 height=47><img src={url_img${i}} height=45 width=100 /></td><td>{time${i}}</td><td width=85>{length${i}}</td><td width=85>{width${i}}</td><td width=85>{height${i}}</td><td width=85>{barcode${i}}</td><td width=115>{shape${i}}</td><td width=115>{device${i}}</td><td width=85>{name${i}}</td><td width=85>{customer${i}}</td><td width=85>{supplier${i}}</td></tr>`;
     });
 
     var uri = "data:application/vnd.ms-excel;base64,",
@@ -132,6 +132,7 @@ function Dashboard() {
     for (var n = 0; n < data.length; n++) {
       // ctx[`url${n}`] = data[n].url;
       ctx[`url${n}`] = data[n].url_imgseg;
+      ctx[`url_img${n}`] = data[n].url;
       ctx[`time${n}`] = data[n].timestamp;
       ctx[`length${n}`] = data[n].l;
       ctx[`width${n}`] = data[n].w;
@@ -210,7 +211,8 @@ function Dashboard() {
       editable: "never",
       export: false,
       render: (rowData) =>
-        rowData.url_imgseg ? (
+      <span style={{ display:'flex', flexDirection:'row'}}>
+        {rowData.url_imgseg ? (
           <div
             onClick={(e) => {
               // setImage(rowData.url);
@@ -232,7 +234,32 @@ function Dashboard() {
             src=""
             style={{ cursor: "default" }}
           />
-        ),
+        )}
+        {/* ----------------------2nd image---------------- */}
+        {rowData.url ? (
+          <div
+            onClick={(e) => {
+              setImage(rowData.url);
+              setstate(true);
+            }}
+            style={{marginLeft:'10px'}}
+          >
+            <Avatar
+              variant="rounded"
+              // src={rowData.url}
+              src={rowData.url}
+              style={{ cursor: "pointer" }}
+            />
+          </div>
+        ) : (
+          <Avatar
+            variant="rounded"
+            alt=""
+            src=""
+            style={{ cursor: "default" }}
+          />
+        )}
+        </span>
     },
     { title: "Time", field: "timestamp", editable: "never" },
     { title: "L", field: "l", cellStyle: { maxWidth: 60 }, editable: "never" },

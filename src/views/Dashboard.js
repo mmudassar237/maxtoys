@@ -2,6 +2,7 @@ import React, { useEffect, useCallback, useState } from "react";
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import MaterialTable from "material-table";
 import Avatar from "@mui/material/Avatar";
+import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
 //--------------------------------------------table icon-----------------------
 import { forwardRef } from "react";
 import AddBox from "@material-ui/icons/AddBox";
@@ -210,56 +211,64 @@ function Dashboard() {
       field: "image",
       editable: "never",
       export: false,
-      render: (rowData) =>
-      <span style={{ display:'flex', flexDirection:'row'}}>
-        {rowData.url_imgseg ? (
-          <div
-            onClick={(e) => {
-              // setImage(rowData.url);
-              setImage(rowData.url_imgseg);
-              setstate(true);
-            }}
-          >
+      render: (rowData) => (
+        <span style={{ display: "flex", flexDirection: "row", gap: 5 }}>
+          {rowData.url_imgseg ? (
+            <div
+              onClick={(e) => {
+                // setImage(rowData.url);
+                setImage(rowData.url_imgseg);
+                setstate(true);
+              }}
+            >
+              <Avatar
+                variant="rounded"
+                // src={rowData.url}
+                src={rowData.url_imgseg}
+                style={{ cursor: "pointer" }}
+              >
+                <InsertPhotoOutlinedIcon />
+              </Avatar>
+            </div>
+          ) : (
             <Avatar
               variant="rounded"
-              // src={rowData.url}
-              src={rowData.url_imgseg}
-              style={{ cursor: "pointer" }}
-            />
-          </div>
-        ) : (
-          <Avatar
-            variant="rounded"
-            alt=""
-            src=""
-            style={{ cursor: "default" }}
-          />
-        )}
-        {/* ----------------------2nd image---------------- */}
-        {rowData.url ? (
-          <div
-            onClick={(e) => {
-              setImage(rowData.url);
-              setstate(true);
-            }}
-            style={{marginLeft:'10px'}}
-          >
+              alt=""
+              src=""
+              style={{ cursor: "default" }}
+            >
+              <InsertPhotoOutlinedIcon />
+            </Avatar>
+          )}
+          {rowData.url ? (
+            <div
+              onClick={(e) => {
+                // setImage(rowData.url);
+                setImage(rowData.url);
+                setstate(true);
+              }}
+            >
+              <Avatar
+                variant="rounded"
+                // src={rowData.url}
+                src={rowData.url}
+                style={{ cursor: "pointer" }}
+              >
+                <InsertPhotoOutlinedIcon />
+              </Avatar>
+            </div>
+          ) : (
             <Avatar
               variant="rounded"
-              // src={rowData.url}
-              src={rowData.url}
-              style={{ cursor: "pointer" }}
-            />
-          </div>
-        ) : (
-          <Avatar
-            variant="rounded"
-            alt=""
-            src=""
-            style={{ cursor: "default" }}
-          />
-        )}
+              alt=""
+              src=""
+              style={{ cursor: "default" }}
+            >
+              <InsertPhotoOutlinedIcon />
+            </Avatar>
+          )}
         </span>
+      ),
     },
     { title: "Time", field: "timestamp", editable: "never" },
     { title: "L", field: "l", cellStyle: { maxWidth: 60 }, editable: "never" },
@@ -398,9 +407,7 @@ function Dashboard() {
         </Box>
       )}
       {state && (
-        <Lightbox
-         mainSrc={image}
-          onCloseRequest={() => setstate(false)} />
+        <Lightbox mainSrc={image} onCloseRequest={() => setstate(false)} />
       )}
       {/* ----------------------------------Data Table------------------------------------ */}
       <div
@@ -461,8 +468,12 @@ function Dashboard() {
               tableToExcel(data);
             },
           }}
-          localization={{ body: { emptyDataSourceMessage: "",
-            editRow: { deleteText: 'are you really want to delete ?' } }, }}
+          localization={{
+            body: {
+              emptyDataSourceMessage: "",
+              editRow: { deleteText: "are you really want to delete ?" },
+            },
+          }}
           columns={columns}
           icons={tableIcons}
           data={(query) =>
@@ -518,8 +529,8 @@ function Dashboard() {
                   resolve();
                 }
               }),
-              onRowDelete: oldData =>
-              new Promise(async(resolve, reject) => {
+            onRowDelete: (oldData) =>
+              new Promise(async (resolve, reject) => {
                 console.log(oldData.id);
                 try {
                   const response = await axios({
@@ -532,10 +543,9 @@ function Dashboard() {
                   alert(error.message);
                   resolve();
                 }
-                  resolve()
+                resolve();
               }),
           }}
-          
         />
       </div>
     </>
